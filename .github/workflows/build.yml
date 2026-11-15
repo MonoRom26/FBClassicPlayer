@@ -18,9 +18,9 @@ jobs:
           BASE="https://github.com"
           git clone --recursive "$BASE/theos/theos.git" "$HOME/theos"
           curl -L "$BASE/theos/sdks/archive/master.zip" -o master.zip
-          unzip -q master.zip
-          mv sdks-master/*.sdk "$HOME/theos/sdks/"
-          rm -rf master.zip sdks-master
+          ditto -xk master.zip sdks-temp
+          mv sdks-temp/sdks-master/*.sdk "$HOME/theos/sdks/"
+          rm -rf master.zip sdks-temp
           echo "THEOS=$HOME/theos" >> $GITHUB_ENV
 
       - name: Build Dylib

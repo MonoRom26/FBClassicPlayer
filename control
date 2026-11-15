@@ -1,0 +1,9 @@
+Package: com.custom.fbclassicplayer
+Name: FBClassicPlayer
+Version: 1.0.0
+Architecture: iphoneos-arm64
+Description: Disable Facebook Shorts/Reels player and restore classic video player.
+Maintainer: Developer
+Author: Developer
+Section: Tweaks
+Depends: mobilesubstrate (>= 0.9.5000)

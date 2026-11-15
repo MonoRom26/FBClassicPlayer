@@ -13,14 +13,8 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Theos and SDKs
-        run: |
-          git clone --recursive https://github.com $HOME/theos
-          curl -LO https://github.com
-          unzip -q master.zip
-          mv sdks-master/*.sdk $HOME/theos/sdks/
-          rm -rf master.zip sdks-master
-          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+      - name: Setup Theos
+        uses: theos/theos-action@main
 
       - name: Build Dylib
         run: |

@@ -13,8 +13,9 @@ jobs:
       - name: Checkout Repository
         uses: actions/checkout@v4
 
-      - name: Install Theos and SDKs
+      - name: Install Dependencies and Theos
         run: |
+          brew install ldid
           BASE="https://github.com"
           git clone --recursive "$BASE/theos/theos.git" "$HOME/theos"
           curl -L "$BASE/theos/sdks/archive/master.zip" -o master.zip

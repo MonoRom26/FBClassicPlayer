@@ -1,5 +1,8 @@
 #import <UIKit/UIKit.h>
 
+@interface FBShortFormVideoViewController : UIViewController
+@end
+
 %hook FBShortFormVideoViewController
 
 - (void)viewDidLoad {

@@ -1,0 +1,31 @@
+name: Build iOS Tweak
+
+on:
+  push:
+    branches: [ main, master ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: macos-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Install Theos
+        run: |
+          git clone --recursive https://github.com $HOME/theos
+          echo "THEOS=$HOME/theos" >> $GITHUB_ENV
+
+      - name: Build Dylib
+        run: |
+          make package FINALPACKAGE=1
+          mkdir -p output
+          cp .theos/obj/FBClassicPlayer.dylib output/FBClassicPlayer.dylib
+
+      - name: Upload Compiled Dylib
+        uses: actions/upload-artifact@v4
+        with:
+          name: FBClassicPlayer-dylib
+          path: output/FBClassicPlayer.dylib
